@@ -8,14 +8,8 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useState } from "react";
-import styled from "styled-components";
-import { adminContext } from "../contexts/AdminContext";
-import { mobile } from "../responsive";
 
-const Tag = styled.h2`
-  width: 700;
-  ${mobile({ backgroundColor: "red" })}
-`;
+import { adminContext } from "../contexts/AdminContext";
 
 const AddProductPage = () => {
   const data = React.useContext(adminContext);
@@ -60,7 +54,7 @@ const AddProductPage = () => {
   return (
     <Container>
       <div className="add-edit-page">
-        <Tag>Добавить товар</Tag>
+        <h1>Добавить товар</h1>
         <form onSubmit={handleSubmit}>
           <TextField
             onChange={(e) =>

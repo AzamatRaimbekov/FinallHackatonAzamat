@@ -1,0 +1,14 @@
+{
+  "products": [
+    {
+      "name": "asdasd",
+      "description": "asdasd",
+      "price": 23123123,
+      "image": "123123",
+      "ram": "16",
+      "memory": "512",
+      "color": "white",
+      "id": 1
+    }
+  ]
+}
