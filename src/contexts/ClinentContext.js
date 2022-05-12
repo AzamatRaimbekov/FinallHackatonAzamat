@@ -1,5 +1,14 @@
 import axios from "axios";
-import React, { useReducer, useState } from "react";
+import {
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+
+import React, { useEffect, useReducer, useState } from "react";
+
+import { auth } from "../firebase";
 import { API } from "../helpers/consts";
 
 export const clientContext = React.createContext();
@@ -119,6 +128,71 @@ const ClinentContext = (props) => {
     await axios.patch(`${API}/${id}`, { likes: count + 1 });
     getProducts();
   };
+  const authWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider);
+  };
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      const action = {
+        type: "CHECK_USER",
+        payload: user,
+      };
+      dispatch(action);
+    });
+  }, []);
+
+  const logOut = () => {
+    signOut(auth);
+  };
+
+  const getProdFromCart = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || { products: [] };
+    const action = {
+      type: "GET_PROD_FROM_CART",
+      payload: cart,
+    };
+    dispatch(action);
+  };
+
+  const changeCountProductInCart = (id, count) => {
+    if (count < 1) {
+      return;
+    }
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    cart.products = cart.products.map((item) => {
+      if (item.product.id === id) {
+        item.count = count;
+        item.subPrice = item.count * item.product.price;
+      }
+      return item;
+    });
+    cart.totalPrice = cart.products.reduce((prev, next) => {
+      return prev + next.subPrice;
+    }, 0);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    getProdFromCart();
+  };
+
+  //! Детали и коментарии продуктов
+  const getProductDetails = async (id) => {
+    const response = await axios(`${API}/${id}`);
+    const action = {
+      type: "GET_PRODUCT_DETAILS",
+      payload: response.data,
+    };
+    dispatch(action);
+  };
+  // ! Коменты
+  const addFeedback = async (newFeedback, product) => {
+    if (product.feedBacks) {
+      product.feedBacks.push(newFeedback);
+      await axios.patch(`${API}/${product.id}`, product);
+    } else {
+      product.feedBacks = [newFeedback];
+      await axios.patch(`${API}/${product.id}`, product);
+    }
+  };
   return (
     <clientContext.Provider
       value={{
@@ -128,6 +202,12 @@ const ClinentContext = (props) => {
         checkProductInCart,
         deleteProductInCart,
         likeCounter,
+        authWithGoogle,
+        logOut,
+        getProdFromCart,
+        changeCountProductInCart,
+        getProductDetails,
+        addFeedback,
         products: products,
         totalCount: totalCount,
         productsPerPage: productsPerPage,

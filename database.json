@@ -1,14 +1,33 @@
 {
   "products": [
     {
-      "name": "asdasd",
-      "description": "asdasd",
-      "price": 23123123,
+      "name": "123123",
+      "description": "123123",
+      "price": "123123126",
       "image": "123123",
       "ram": "16",
       "memory": "512",
       "color": "white",
-      "id": 1
+      "id": 1,
+      "likes": 1,
+      "feedBacks": [
+        {
+          "title": "asdasdasd",
+          "user": "asdasdasd"
+        }
+      ]
+    },
+    {
+      "name": "asdasd",
+      "description": "asdas",
+      "price": 12312,
+      "image": "123123123",
+      "ram": "32",
+      "memory": "1024",
+      "color": "white",
+      "feedbacks": [],
+      "likes": 1,
+      "id": 2
     }
   ]
 }

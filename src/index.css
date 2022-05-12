@@ -17,3 +17,30 @@ a {
   text-decoration: none;
 }
 
+.logoAnimation {
+  color: #000 !important;
+  width: 100px !important;
+  margin-left: 10px !important;
+  animation: logo-circle 5s linear infinite 0s;
+  transition: 0.5s !important;
+}
+.logoAnimation:hover {
+  width: 45px !important;
+  height: 45px !important;
+  transform: rotate(180deg);
+  animation: logo-circle 5s linear infinite 0s;
+  /* transition: linear 1s; */
+  /* Вопрос */
+}
+
+@keyframes logo-circle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(500deg);
+  }
+  100% {
+    transform: rotate(1000deg);
+  }
+}
