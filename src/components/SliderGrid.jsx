@@ -7,7 +7,7 @@ const Wrap = styled.div`
   overflow: hidden;
   display: flex;
   align-items: center;
-  ${mobile({ flexDirection: "column" })}
+  ${mobile({ display: "none" })}
 `;
 const Images = styled.img`
   width: 300px;

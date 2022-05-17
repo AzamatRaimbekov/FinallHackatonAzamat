@@ -145,7 +145,7 @@ export default class App extends React.Component {
           <hr style={{ margin: "60px 0 30px" }} />
           <div className="App-badges">
             <a
-              href="https://github.com/Nerbol8/laptopshop"
+              href="https://github.com/AzamatRaimbekov/FinallHackatonAzamat"
               className="github__btn"
             >
               <img

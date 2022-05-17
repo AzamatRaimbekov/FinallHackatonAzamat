@@ -8,11 +8,12 @@ import {
   Room,
 } from "@mui/icons-material";
 import styled from "styled-components";
-
+import { mobile } from "../responsive";
 const Container = styled.div`
   display: flex;
   color: white;
   background-color: transparent;
+  ${mobile({ flexDirection: "column" })}
 `;
 
 const Left = styled.div`
