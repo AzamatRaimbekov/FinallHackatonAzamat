@@ -18,7 +18,7 @@ a {
 }
 
 .logoAnimation {
-  color: #000 !important;
+  color: white !important;
   width: 100px !important;
   margin-left: 10px !important;
   animation: logo-circle 5s linear infinite 0s;
@@ -32,7 +32,62 @@ a {
   /* transition: linear 1s; */
   /* Вопрос */
 }
+.color-white {
+  color: white;
+}
 
+/* Navbar setttings */
+.app-bar {
+  background-color: black !important;
+}
+.logoutColor {
+  color: white;
+}
+
+#tsparticles {
+  position: fixed;
+  width: 100%;
+  z-index: -1;
+}
+
+.slide {
+  max-height: 550px;
+  max-width: 550px;
+}
+.card-page {
+  display: flex;
+  align-items: center;
+}
+.add-product {
+  display: flex;
+  flex-direction: column;
+}
+.add-edit-page form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.table__row {
+  /* border: solid 3px #d2ad50; */
+  background-color: #d2ad50 !important;
+  border: solid 1px #d2ad50;
+  /* color: white !important; */
+}
+
+.products-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 10px;
+  margin-top: 50px;
+  column-gap: 25px;
+  background-color: transparent;
+}
+
+.product-card-image {
+  object-fit: contain !important;
+}
 @keyframes logo-circle {
   0% {
     transform: rotate(0deg);

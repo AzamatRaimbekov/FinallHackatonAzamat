@@ -3,6 +3,13 @@ import React, { useEffect } from "react";
 import AdminTable from "../components/AdminTable";
 import { adminContext } from "../contexts/AdminContext";
 
+import styled from "styled-components";
+
+const Title = styled.h1`
+  color: white;
+  text-align: center;
+`;
+
 const AdminPage = () => {
   const data = React.useContext(adminContext);
   const { getProducts, products } = data;
@@ -14,7 +21,7 @@ const AdminPage = () => {
   return (
     <Container>
       <div>
-        <h1>All products you are</h1>
+        <Title>All products</Title>
         <AdminTable products={products} />
       </div>
     </Container>

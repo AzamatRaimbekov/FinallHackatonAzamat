@@ -34,10 +34,10 @@ export default function CustomizedTables(props) {
   const data = React.useContext(adminContext);
   const { deleteProduct } = data;
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+    <TableContainer className="table__row" component={Paper}>
+      <Table sx={{ minWidth: 300 }} aria-label="customized table">
         <TableHead>
-          <TableRow>
+          <TableRow className="table__row">
             <StyledTableCell>№</StyledTableCell>
             <StyledTableCell align="right">Название трэка</StyledTableCell>
             <StyledTableCell align="right">Описание</StyledTableCell>
@@ -63,8 +63,8 @@ export default function CustomizedTables(props) {
               <StyledTableCell align="right">
                 <img width={100} src={item.image} />
               </StyledTableCell>
-              <StyledTableCell align="right">{item.ram}GB</StyledTableCell>
-              <StyledTableCell align="right">{item.memory}GB</StyledTableCell>
+              {/* <StyledTableCell align="right">{item.ram}GB</StyledTableCell> */}
+              {/* <StyledTableCell align="right">{item.memory}GB</StyledTableCell> */}
               <StyledTableCell align="right">{item.color}</StyledTableCell>
               {/* <StyledTableCell align="right">{item.memory}</StyledTableCell> */}
 

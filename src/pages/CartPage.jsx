@@ -8,8 +8,20 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { clientContext } from "../contexts/ClinentContext";
+import styled from "styled-components";
 
 const rows = [];
+
+const Title = styled.h1`
+  color: white;
+  text-align: center;
+`;
+const Input = styled.input`
+  border-radius: 15%;
+  width: 60px;
+  text-align: center;
+  border: solid 1px white;
+`;
 
 const CartPage = () => {
   const data = React.useContext(clientContext);
@@ -32,11 +44,11 @@ const CartPage = () => {
   return (
     <div>
       <Container>
-        <h2>Корзина</h2>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Title>Корзина</Title>
+        <TableContainer component={Paper} className="table__row">
+          <Table sx={{ minWidth: 500 }} aria-label="simple table">
             <TableHead>
-              <TableRow>
+              <TableRow className="table__row">
                 <TableCell align="center">Название</TableCell>
                 <TableCell align="center">Фото</TableCell>
                 <TableCell align="center">Цена</TableCell>
@@ -55,9 +67,9 @@ const CartPage = () => {
                   <TableCell align="center">
                     <img width={100} src={item.product.image} alt="" />
                   </TableCell>
-                  <TableCell align="center">{item.product.price}сом</TableCell>
+                  <TableCell align="center">{item.product.price} $</TableCell>
                   <TableCell align="center">
-                    <input
+                    <Input
                       min={1}
                       onChange={(e) =>
                         changeCountProductInCart(
@@ -69,14 +81,14 @@ const CartPage = () => {
                       value={item.count}
                     />
                   </TableCell>
-                  <TableCell align="center">{item.subPrice}сом</TableCell>
+                  <TableCell align="center">{item.subPrice} $</TableCell>
                 </TableRow>
               ))}
             </TableBody>
             <TableFooter>
               <TableRow>
                 <TableCell align="center">
-                  <h2>{myCart.totalPrice}сом</h2>
+                  <Title>{myCart.totalPrice} $</Title>
                 </TableCell>
               </TableRow>
             </TableFooter>

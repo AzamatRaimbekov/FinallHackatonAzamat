@@ -1,3 +1,4 @@
+import InfoAboutUs from "./components/InfoAboutUs";
 import AdminContext from "./contexts/AdminContext";
 import ClinentContext from "./contexts/ClinentContext";
 
@@ -8,6 +9,7 @@ const App = () => {
     <ClinentContext>
       <AdminContext>
         <Navigation />
+        <InfoAboutUs />
       </AdminContext>
     </ClinentContext>
   );

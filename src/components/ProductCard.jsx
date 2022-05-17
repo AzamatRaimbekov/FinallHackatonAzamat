@@ -48,70 +48,83 @@ export default function ProductCard({ item }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <Link to={`/details/${item.id}`}>
-        <CardHeader title={item.name} subheader={`${item.price} сом`} />
-      </Link>
-      <CardMedia
-        className="product-card-image"
-        component="img"
-        height="194"
-        image={item.image}
-        alt={item.name}
-      />
-      <CardContent>
-        <Typography
-          className="product-card-desc"
-          variant="body2"
-          color="text.secondary"
-        >
-          {item.desc}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton
-          disabled={liked}
-          onClick={() => {
-            likeCounter(item.id, item.likes || 0);
-            setLiked(true);
-          }}
-          aria-label="add to favorites"
-        >
-          <FavoriteIcon color={liked ? "default" : "error"} />
-          <span>{item.likes}</span>
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        {checkProductInCart(item.id) ? (
-          <IconButton onClick={() => deleteProductInCart(item.id)}>
-            <ShoppingCartIcon color="disabled" />
-          </IconButton>
-        ) : (
-          <IconButton onClick={() => addProductToCart(item)}>
-            <ShoppingCartIcon color="inherit" />
-          </IconButton>
-        )}
-
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse
-        className="product-card-collapse"
-        in={expanded}
-        timeout="auto"
-        unmountOnExit
+    <div className="card-page">
+      <Card
+        sx={{
+          maxWidth: 500,
+          border: "1px solid #D2AD50",
+          backgroundColor: "#CFA93B",
+        }}
       >
+        <Link to={`/details/${item.id}`}>
+          <CardHeader
+            sx={{ color: "white" }}
+            title={item.name}
+            subheader={`${item.price}`}
+          />
+        </Link>
+        <CardMedia
+          className="product-card-image"
+          component="img"
+          height="400"
+          // width="400"?
+          image={item.image}
+          alt={item.name}
+        />
         <CardContent>
-          <Typography paragraph>{item.desc}</Typography>
+          <Typography
+            className="product-card-desc"
+            variant="body2"
+            color="text.secondary"
+          >
+            {item.desc}
+          </Typography>
         </CardContent>
-      </Collapse>
-    </Card>
+        <CardActions disableSpacing>
+          <IconButton
+            disabled={liked}
+            onClick={() => {
+              likeCounter(item.id, item.likes || 0);
+              setLiked(true);
+            }}
+            aria-label="add to favorites"
+          >
+            <FavoriteIcon color={liked ? "default" : "error"} />
+            <span>{item.likes}</span>
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+          {checkProductInCart(item.id) ? (
+            <IconButton onClick={() => deleteProductInCart(item.id)}>
+              <ShoppingCartIcon color="disabled" />
+            </IconButton>
+          ) : (
+            <IconButton onClick={() => addProductToCart(item)}>
+              <ShoppingCartIcon color="inherit" />
+            </IconButton>
+          )}
+
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+        <Collapse
+          className="product-card-collapse"
+          in={expanded}
+          timeout="auto"
+          unmountOnExit
+        >
+          <CardContent>
+            <Typography paragraph>{item.desc}</Typography>
+          </CardContent>
+        </Collapse>
+      </Card>
+    </div>
   );
 }

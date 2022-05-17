@@ -15,13 +15,17 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { Badge } from "@mui/material";
 import {
+  AddCircle,
   AddModerator,
   AdminPanelSettings,
   BookmarkAdd,
-  CardTravel,
-  Cyclone,
   Logout,
+  LunchDining,
   ShoppingCart,
+  StarOutline,
+  StarPurple500Outlined,
+  Stars,
+  SwitchAccessShortcutAdd,
 } from "@mui/icons-material";
 
 import styled from "styled-components";
@@ -66,7 +70,7 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
-      <AppBar position="sticky" color="transparent">
+      <AppBar position="sticky" className="app-bar">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
@@ -76,7 +80,7 @@ const Navbar = () => {
               sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
             >
               <Link to="/">
-                <Cyclone className="logoAnimation" />
+                <StarPurple500Outlined className="logoAnimation" />
               </Link>
             </Typography>
 
@@ -113,12 +117,12 @@ const Navbar = () => {
                   <MenuItem onClick={handleCloseNavMenu}>
                     <Link to="/admin-panel">
                       <AdminButton textAlign="center">
-                        <AdminPanelSettings className="colorGray" />
+                        <Stars className="color-black" />
                       </AdminButton>
                     </Link>
                     <Link to="/admin-panel-add">
                       <Typography textAlign="center">
-                        <AddModerator className="colorGray" />
+                        <AddCircle className="color-black" />
                       </Typography>{" "}
                     </Link>
 
@@ -127,13 +131,13 @@ const Navbar = () => {
                       style={({ marginRight: 70 }, { marginLeft: 70 })}
                     >
                       <Badge badgeContent={cartCount} color="default">
-                        <ShoppingCart className="colorGray" />
+                        <LunchDining className="color-black" />
                       </Badge>
                     </Link>
 
                     <Link to="/favorite" style={{ marginRight: 10 }}>
                       <Badge color="default" badgeContent={cartCount}>
-                        <BookmarkAdd className="colorGray" />
+                        <LunchDining className="color-black" />
                       </Badge>
                     </Link>
                   </MenuItem>
@@ -147,18 +151,18 @@ const Navbar = () => {
               sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
             >
               <Link to="/">
-                <Cyclone className="logoAnimation" />
+                <StarPurple500Outlined className="logoAnimation" />
               </Link>
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <Link to="/admin-panel">
                 <AdminButton sx={{ my: 2, color: "white", display: "block" }}>
-                  <AdminPanelSettings className="colorGray" />
+                  <Stars className="logoAnimation" />
                 </AdminButton>
               </Link>
               <Link to="/admin-panel-add">
                 <AdminButton sx={{ my: 2, color: "white", display: "block" }}>
-                  <AddModerator className="colorGray" />
+                  <AddCircle className="logoAnimation" />
                 </AdminButton>
               </Link>
             </Box>
@@ -166,17 +170,17 @@ const Navbar = () => {
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <Link to="/favorite" style={{ marginRight: 10 }}>
                 <Badge color="default" badgeContent={cartCount}>
-                  <BookmarkAdd className="colorGray" />
+                  <LunchDining className="logoAnimation" />
                 </Badge>
               </Link>
-            </Box>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {/* </Box>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}> */}
               <Link
                 to="/cart"
                 style={({ marginRight: 70 }, { marginLeft: 70 })}
               >
                 <Badge badgeContent={cartCount} color="default">
-                  <ShoppingCart className="colorGray" />
+                  <StarOutline className="logoAnimation" />
                 </Badge>
               </Link>
             </Box>

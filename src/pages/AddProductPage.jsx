@@ -1,15 +1,66 @@
-import {
-  Button,
-  Container,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { Container } from "@mui/material";
 import React, { useState } from "react";
+import styled from "styled-components";
 
 import { adminContext } from "../contexts/AdminContext";
+
+const Contain = styled.div`
+  display: flex;
+  flex-direction: column !important;
+  align-items: center;
+
+  /* margin-top: 30px;
+  margin-left: 0;
+  margin-bottom: 30px; */
+`;
+
+const Title = styled.h1`
+  color: #d2ad50;
+  font-weight: 700;
+  text-align: center;
+`;
+
+const SearchInput = styled.input`
+  width: 450px;
+  height: 70px;
+  background: #d2ad50;
+  color: white;
+
+  border: solid 4px #d2ad50;
+  background-color: white;
+  color: #d2ad50;
+  font-weight: 600;
+  font-size: 24px;
+`;
+const SelectInput = styled.select`
+  width: 450px;
+  height: 70px;
+
+  border: solid 4px #d2ad50;
+  background-color: white;
+  color: #d2ad50;
+  font-weight: 600;
+  font-size: 24px;
+`;
+const SelectOptions = styled.option`
+  color: #d2ad50;
+  font-weight: 600;
+  font-size: 24px;
+`;
+
+const ButtonClear = styled.button`
+  width: 450px;
+  height: 70px;
+  border: solid 4px #d2ad50;
+  background-color: #d2ad50;
+  margin-bottom: 50px;
+  cursor: pointer;
+  &:hover {
+    background-color: white;
+    color: #d2ad50;
+    transition: 1s;
+  }
+`;
 
 const AddProductPage = () => {
   const data = React.useContext(adminContext);
@@ -20,7 +71,7 @@ const AddProductPage = () => {
     description: "",
     price: "",
     image: "",
-    ram: "",
+
     memory: "",
     color: "",
     feedbacks: [],
@@ -45,7 +96,6 @@ const AddProductPage = () => {
       description: "",
       price: "",
       image: "",
-      ram: "",
       memory: "",
       color: "",
     });
@@ -54,95 +104,67 @@ const AddProductPage = () => {
   return (
     <Container>
       <div className="add-edit-page">
-        <h1>Добавить товар</h1>
+        <Title>Добавить нового Артиста</Title>
         <form onSubmit={handleSubmit}>
-          <TextField
+          <SearchInput
             onChange={(e) =>
               setNewProduct({ ...newProduct, name: e.target.value })
             }
             value={newProduct.name}
-            label="Введите название"
-            variant="outlined"
+            placeholder="ФИО"
           />
-          <TextField
+          <SearchInput
             onChange={(e) =>
               setNewProduct({ ...newProduct, description: e.target.value })
             }
             value={newProduct.description}
-            label="Введите описание"
-            variant="outlined"
+            placeholder="Ник нейм"
           />
-          <TextField
+          <SearchInput
             type="number"
             onChange={(e) =>
               setNewProduct({ ...newProduct, price: parseInt(e.target.value) })
             }
             value={newProduct.price}
-            label="Введите цену"
-            variant="outlined"
+            placeholder="Введите стоимость имени"
           />
-          <TextField
+          <SearchInput
             onChange={(e) =>
               setNewProduct({ ...newProduct, image: e.target.value })
             }
             value={newProduct.image}
-            label="Ссылка на фото"
-            variant="outlined"
+            placeholder="Фотография артиста"
           />
-          <FormControl variant="outlined">
-            <InputLabel id="color-select-label">Выберите цвет</InputLabel>
-            <Select
-              onChange={(e) =>
-                setNewProduct({ ...newProduct, color: e.target.value })
-              }
-              value={newProduct.color}
-              label="Выберите цвет"
-              labelId="color-select-label"
-            >
-              <MenuItem value="black">Чёрный</MenuItem>
-              <MenuItem value="white">Белый</MenuItem>
-              <MenuItem value="blue">Синий</MenuItem>
-              <MenuItem value="pink">Розовый</MenuItem>
-              <MenuItem value="yellow">Жёлтый</MenuItem>
-              <MenuItem value="red">Красный</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl variant="outlined">
-            <InputLabel id="memory-select-label">Выберите память</InputLabel>
-            <Select
-              onChange={(e) =>
-                setNewProduct({ ...newProduct, memory: e.target.value })
-              }
-              value={newProduct.memory}
-              label="Выберите память"
-              labelId="memory-select-label"
-            >
-              <MenuItem value="256">256 GB</MenuItem>
-              <MenuItem value="512">512 GB</MenuItem>
-              <MenuItem value="1024">1024 GB</MenuItem>
-              <MenuItem value="2048">2048 GB</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl variant="outlined">
-            <InputLabel id="ram-select-label">Выберите Озу</InputLabel>
-            <Select
-              onChange={(e) =>
-                setNewProduct({ ...newProduct, ram: e.target.value })
-              }
-              value={newProduct.ram}
-              label="Выберите ОЗУ "
-              labelId="ram-select-label"
-            >
-              <MenuItem value="4">4 GB</MenuItem>
-              <MenuItem value="8">8 GB</MenuItem>
-              <MenuItem value="16">16 GB</MenuItem>
-              <MenuItem value="32">32 GB</MenuItem>
-              <MenuItem value="64">64 GB</MenuItem>
-            </Select>
-          </FormControl>
-          <Button color="inherit" type="submit" variant="outlined">
-            Добавить
-          </Button>
+          <SelectInput
+            onChange={(e) =>
+              setNewProduct({ ...newProduct, color: e.target.value })
+            }
+            value={newProduct.color}
+            placeholder="Выберите жанр"
+          >
+            <SelectOptions>Выберите жанр</SelectOptions>
+            <SelectOptions value="rock">Rock</SelectOptions>
+            <SelectOptions value="hipHip">HIP-HOP</SelectOptions>
+            <SelectOptions value="classic">CLASSIC</SelectOptions>
+            <SelectOptions value="pop">POP</SelectOptions>
+            <SelectOptions value="jazz">JAZZ</SelectOptions>
+            <SelectOptions value="arnb">ARNB</SelectOptions>
+          </SelectInput>
+          <SelectInput
+            value={newProduct.memory}
+            onChange={(e) =>
+              setNewProduct({ ...newProduct, memory: e.target.value })
+            }
+            placeholder="Выберите пол "
+            labelId="memory-select-label"
+          >
+            <SelectOptions>Выберите пол</SelectOptions>
+            <SelectOptions value="woman">Женский</SelectOptions>
+            <SelectOptions value="man">Мужской</SelectOptions>
+            <SelectOptions value="manwon">Другое</SelectOptions>
+          </SelectInput>
+
+          <ButtonClear type="submit">Добавить</ButtonClear>
         </form>
       </div>
     </Container>

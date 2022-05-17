@@ -1,4 +1,4 @@
-import { Backspace } from "@mui/icons-material";
+import { Backspace, Cancel } from "@mui/icons-material";
 import {
   Button,
   FormControl,
@@ -9,6 +9,62 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+import { yellow } from "@mui/material/colors";
+
+const color = yellow[400];
+
+const Contain = styled.div`
+  display: flex;
+
+  align-items: center;
+
+  margin-top: 30px;
+  margin-left: 0;
+  margin-bottom: 30px;
+`;
+
+const SearchInput = styled.input`
+  width: 450px;
+  height: 70px;
+
+  border: solid 4px #d2ad50;
+  background-color: white;
+  color: #d2ad50;
+  font-weight: 600;
+  font-size: 24px;
+`;
+
+const SelectInput = styled.select`
+  width: 450px;
+  height: 70px;
+
+  border: solid 4px #d2ad50;
+  background-color: white;
+  color: #d2ad50;
+  font-weight: 600;
+  font-size: 24px;
+`;
+const SelectOptions = styled.option`
+  color: #d2ad50;
+  font-weight: 600;
+  font-size: 24px;
+`;
+
+const ButtonClear = styled.button`
+  width: 150px;
+  height: 70px;
+
+  border: solid 4px #d2ad50;
+  background-color: #d2ad50;
+  cursor: pointer;
+  &:hover {
+    background-color: white;
+    color: #d2ad50;
+    transition: 1s;
+  }
+`;
 
 const FilterBlock = ({ getProducts }) => {
   const location = useLocation();
@@ -36,67 +92,47 @@ const FilterBlock = ({ getProducts }) => {
     setColorValue("");
     setMemoryValue("");
     setRamValue("");
-    navigate("/");
+    navigate("/burger");
     getProducts();
   };
 
   return (
-    <div className="filters-block">
-      <TextField
-        variant="outlined"
-        value={searchValue}
-        onChange={(e) => handleFilters("q", e.target.value)}
-        type="search"
-        label="Живой поиск..."
-      />
-      <FormControl variant="outlined">
-        <InputLabel id="color-label">Выберите цвет</InputLabel>
-        <Select
+    <div>
+      <Contain>
+        <SearchInput
+          value={searchValue}
+          onChange={(e) => handleFilters("q", e.target.value)}
+          type="search"
+          placeholder="     Живой поиск"
+        />
+
+        <SelectInput
           value={colorValue}
           onChange={(e) => handleFilters("color", e.target.value)}
           label="Выберите цвет"
           labelId="color-label"
         >
-          <MenuItem value="black">Чёрный</MenuItem>
-          <MenuItem value="white">Белый</MenuItem>
-          <MenuItem value="blue">Синий</MenuItem>
-          <MenuItem value="pink">Розовый</MenuItem>
-          <MenuItem value="yellow">Жёлтый</MenuItem>
-          <MenuItem value="red">Красный</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl variant="outlined">
-        <InputLabel id="color-label">Выберите память</InputLabel>
-        <Select
+          <SelectOptions>Выберите жанр</SelectOptions>
+          <SelectOptions value="rock">Rock</SelectOptions>
+          <SelectOptions value="hipHip">HIP-HOP</SelectOptions>
+          <SelectOptions value="classic">CLASSIC</SelectOptions>
+          <SelectOptions value="pop">POP</SelectOptions>
+          <SelectOptions value="jazz">JAZZ</SelectOptions>
+          <SelectOptions value="arnb">ARNB</SelectOptions>
+        </SelectInput>
+        <SelectInput
           value={memoryValue}
           onChange={(e) => handleFilters("memory", e.target.value)}
-          label="Выберите память"
-          labelId="color-label"
         >
-          <MenuItem value="256">256 GB</MenuItem>
-          <MenuItem value="512">512 GB</MenuItem>
-          <MenuItem value="1024">1024 GB</MenuItem>
-          <MenuItem value="2048">2048 GB</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl variant="outlined">
-        <InputLabel id="color-label">Выберите ram</InputLabel>
-        <Select
-          value={ramValue}
-          onChange={(e) => handleFilters("ram", e.target.value)}
-          label="Выберите ram"
-          labelId="color-label"
-        >
-          <MenuItem value="4">4 GB</MenuItem>
-          <MenuItem value="8">8 GB</MenuItem>
-          <MenuItem value="16">16 GB</MenuItem>
-          <MenuItem value="32">32 GB</MenuItem>
-          <MenuItem value="xxl">64 GB</MenuItem>
-        </Select>
-      </FormControl>
-      <Button variant="outlined" color="inherit" onClick={resetFilter}>
-        <Backspace />
-      </Button>
+          <SelectOptions>Выберите пол</SelectOptions>
+          <SelectOptions value="woman">Женский</SelectOptions>
+          <SelectOptions value="man">Мужской</SelectOptions>
+          <SelectOptions value="manwon">Другое</SelectOptions>
+        </SelectInput>
+        <ButtonClear onClick={resetFilter}>
+          <Cancel />
+        </ButtonClear>
+      </Contain>
     </div>
   );
 };
